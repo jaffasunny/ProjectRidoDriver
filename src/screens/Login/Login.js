@@ -9,7 +9,7 @@ const Login = ({navigation}) => {
   const [focusBorder, setfocusBorder] = useState(false);
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-black">
       <View className="flex">
         <View className="flex-1 absolute w-full h-72">
           <Image
@@ -28,13 +28,13 @@ const Login = ({navigation}) => {
         <View className="w-80">
           <Text
             style={GlobalStyles.text}
-            className="text-black font-normal text-xl text-center">
+            className="text-white font-normal text-xl text-center">
             Login to your account
           </Text>
           <View className="mt-7">
             <Text
               style={GlobalStyles.text}
-              className="text-black font-medium text-sm">
+              className="text-white font-medium text-sm">
               Email address
             </Text>
             <Input
@@ -47,6 +47,8 @@ const Login = ({navigation}) => {
                 borderTopWidth: 1,
                 padding: 0,
                 borderRadius: 4,
+                borderColor: '#171717',
+                backgroundColor: '#171717',
               }}
               containerStyle={{
                 height: 50,
@@ -59,7 +61,7 @@ const Login = ({navigation}) => {
           <View className="my-3">
             <Text
               style={GlobalStyles.text}
-              className="text-black font-medium text-sm">
+              className="text-white font-medium text-sm">
               Password
             </Text>
             <Input
@@ -72,6 +74,8 @@ const Login = ({navigation}) => {
                 borderTopWidth: 1,
                 padding: 0,
                 borderRadius: 4,
+                borderColor: '#171717',
+                backgroundColor: '#171717',
               }}
               containerStyle={{
                 height: 50,
@@ -87,39 +91,39 @@ const Login = ({navigation}) => {
               <Button
                 title="Back"
                 type="clear"
-                color="#312E81"
+                color="#A5B4FC"
                 titleStyle={{
                   color: 'white',
                   fontSize: 16,
                 }}
                 style={{padding: 5}}
                 onPress={() => navigation.navigate('startScreen')}>
-                <Icon name="chevron-left" color="#312E81" />
-                <Text className="text-base text-indigo-900 font-normal">
+                <Icon name="chevron-left" color="#A5B4FC" />
+                <Text className="text-base text-[#A5B4FC] font-normal">
                   Back
                 </Text>
               </Button>
               <Button
                 title="Login"
-                color="#312E81"
+                color="#4F46E5"
                 buttonStyle={{borderRadius: 6, width: 150, height: 50}}
                 titleStyle={{
-                  color: 'white',
+                  color: '#FAFAFA',
                   fontSize: 16,
                 }}
                 style={{padding: 5}}
-                onPress={() => navigation.navigate('rideSharing')}
+                onPress={() => navigation.navigate('drawerScreens')}
               />
             </View>
           </View>
-          <Text className="text-base text-black text-center">
+          <Text className="text-base text-white text-center">
             Dont have an account?
           </Text>
           <Button
             type="clear"
             title="Signup"
             titleStyle={{
-              color: '#312E81',
+              color: '#A5B4FC',
             }}
             onPress={() => navigation.navigate('signup')}
           />

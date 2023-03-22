@@ -9,19 +9,13 @@ import {Button, Icon} from '@rneui/themed';
 import {DrawerActions, useRoute} from '@react-navigation/native';
 import Main from '../../screens/Main/Main';
 import Avatar from '../Avatar/Avatar';
-import PaymentScreen from '../../screens/Payment/PaymentScreen';
+// import PaymentScreen from '../../screens/Payment/PaymentScreen';
 import {useSelector} from 'react-redux';
 import {getHeaderTitle} from '@react-navigation/elements';
-import AddNewCard from '../../screens/Payment/AddNewCard';
-import About from '../../screens/About/About';
+// import AddNewCard from '../../screens/Payment/AddNewCard';
+// import About from '../../screens/About/About';
 
 function CustomDrawerContent(props) {
-  // const {state, ...rest} = props;
-  // const newState = {...state};
-  // newState.routes = newState.routes.filter(
-  //   item => item.name !== 'AddNewCard',
-  // );
-
   return (
     <DrawerContentScrollView
       {...props}
@@ -75,15 +69,15 @@ export default function MyDrawer({navigation}) {
         name="Welcome"
         options={{
           header: () => (
-            <View className="w-full bg-white flex flex-row justify-between items-center p-2">
+            <View className="w-full bg-black flex flex-row justify-between items-center p-2">
               <Button
-                color="#fff"
+                color="black"
                 onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
                 style={{backgroundColor: 'lightBlue'}}>
-                <Icon name="menu" color="#000" />
+                <Icon name="menu" color="#fff" />
               </Button>
               <Image
-                className="w-30 h-30"
+                style={{width: 95, height: 50, objectFit: 'contain'}}
                 source={require('./../../assets/logo3.png')}
               />
               <Avatar size={32} rounded title="Rd" backgroundColor="#059669" />
@@ -92,12 +86,12 @@ export default function MyDrawer({navigation}) {
         }}
         component={Main}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Payment method"
         // component={PaymentScreen}
         options={{
           header: () => (
-            <View className="w-full bg-white flex flex-row items-center p-2 shadow-lg shadow-gray-500/100">
+            <View className="w-full bg-black flex flex-row items-center p-2 shadow-lg shadow-gray-500/100">
               <Button
                 color="#fff"
                 onPress={() => navigation.navigate('Welcome')}
@@ -116,14 +110,14 @@ export default function MyDrawer({navigation}) {
             paymentDetails={paymentDetails}
           />
         )}
-      </Drawer.Screen>
+      </Drawer.Screen> */}
 
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="About"
         component={About}
         options={{
           header: () => (
-            <View className="w-full bg-white flex flex-row items-center p-2 shadow-lg shadow-gray-500/100">
+            <View className="w-full bg-black flex flex-row items-center p-2 shadow-lg shadow-gray-500/100">
               <Button
                 color="#fff"
                 onPress={() => navigation.navigate('Welcome')}
@@ -136,14 +130,14 @@ export default function MyDrawer({navigation}) {
             </View>
           ),
         }}
-      />
+      /> */}
 
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="AddNewCard"
         // component={AddNewCard}
         options={{
           header: () => (
-            <View className="w-full bg-white flex flex-row items-center p-2 shadow-lg shadow-gray-500/100">
+            <View className="w-full bg-black flex flex-row items-center p-2 shadow-lg shadow-gray-500/100">
               <Button
                 color="#fff"
                 onPress={() => navigation.navigate('Payment method')}
@@ -164,7 +158,7 @@ export default function MyDrawer({navigation}) {
             setPaymentDetails={setPaymentDetails}
           />
         )}
-      </Drawer.Screen>
+      </Drawer.Screen> */}
     </Drawer.Navigator>
   );
 }

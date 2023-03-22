@@ -61,8 +61,8 @@ const StartSC = ({navigation}) => {
             titleStyle={{
               color: '#A5B4FC',
             }}
-            // onPress={() => navigation.navigate('login')}
-            onPress={() => navigation.navigate('drawerScreens')}
+            onPress={() => navigation.navigate('login')}
+            // onPress={() => navigation.navigate('drawerScreens')}
           />
         </View>
       </View>

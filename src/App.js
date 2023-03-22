@@ -7,6 +7,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import Signup from './screens/Signup/Signup';
 import Login from './screens/Login/Login';
 import VehicleDetails from './screens/Signup/VehicleDetails';
+import MyDrawer from './utils/Drawer/Drawer';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -34,6 +35,11 @@ const App = () => {
             options={{headerShown: false}}
             name="login"
             component={Login}
+          />
+          <Stack.Screen
+            options={{headerShown: false}}
+            name="drawerScreens"
+            component={MyDrawer}
           />
         </Stack.Navigator>
       </SafeAreaProvider>

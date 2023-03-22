@@ -172,7 +172,7 @@ const Signup = ({navigation}) => {
                   color="#4F46E5"
                   buttonStyle={{borderRadius: 6, width: 100, height: 50}}
                   titleStyle={{
-                    color: 'white',
+                    color: '#FAFAFA',
                     fontSize: 16,
                   }}
                   style={{padding: 5}}
