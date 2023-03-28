@@ -12,6 +12,7 @@ import Avatar from '../Avatar/Avatar';
 // import PaymentScreen from '../../screens/Payment/PaymentScreen';
 import {useSelector} from 'react-redux';
 import {getHeaderTitle} from '@react-navigation/elements';
+import Passengers from '../../screens/Passenger/Passengers';
 // import AddNewCard from '../../screens/Payment/AddNewCard';
 // import About from '../../screens/About/About';
 
@@ -22,22 +23,23 @@ function CustomDrawerContent(props) {
       contentContainerStyle={{
         display: 'flex',
         height: '100%',
+        backgroundColor: 'black',
       }}>
-      <DrawerItemList {...props} />
+      <DrawerItemList {...props} drawerItemStyle={{color: 'white'}} />
 
-      <View className="items-center justify-end h-3/5 mb-7">
+      <View className="items-center justify-end h-3/5 mb-10">
         <Button
           title="Log out"
-          color="#FEF2F2"
+          color="#DC2626"
           buttonStyle={{
             borderWidth: 1,
-            borderColor: '#B91C1C',
+            borderColor: '#BE123C',
             borderRadius: 6,
             height: 50,
           }}
           containerStyle={{width: '90%', textAlign: 'center'}}
           titleStyle={{
-            color: '#B91C1C',
+            color: '#FFF1F2',
             fontSize: 16,
             fontWeight: 500,
           }}
@@ -46,10 +48,10 @@ function CustomDrawerContent(props) {
         />
       </View>
 
-      <View className="items-start">
+      <View className="items-start self-center">
         <Image
           style={{objectFit: 'contain', alignSelf: 'flex-start'}}
-          className="w-full"
+          className="w-[160px] h-20"
           source={require('./../../assets/logo2.png')}
         />
       </View>
@@ -64,7 +66,8 @@ export default function MyDrawer({navigation}) {
 
   return (
     <Drawer.Navigator
-      drawerContent={props => <CustomDrawerContent {...props} />}>
+      drawerContent={props => <CustomDrawerContent {...props} />}
+      drawerItemStyle={{color: 'white'}}>
       <Drawer.Screen
         name="Welcome"
         options={{
@@ -83,82 +86,33 @@ export default function MyDrawer({navigation}) {
               <Avatar size={32} rounded title="Rd" backgroundColor="#059669" />
             </View>
           ),
+          drawerLabelStyle: {
+            color: 'white',
+          },
         }}
         component={Main}
       />
-      {/* <Drawer.Screen
-        name="Payment method"
-        // component={PaymentScreen}
-        options={{
-          header: () => (
-            <View className="w-full bg-black flex flex-row items-center p-2 shadow-lg shadow-gray-500/100">
-              <Button
-                color="#fff"
-                onPress={() => navigation.navigate('Welcome')}
-                style={{backgroundColor: 'lightBlue'}}>
-                <Icon name="chevron-left" color="#000" />
-              </Button>
-              <View className="self-center items-center justify-center w-[80%]">
-                <Text className="font-bold text-lg">Payment method</Text>
-              </View>
-            </View>
-          ),
-        }}>
-        {() => (
-          <PaymentScreen
-            navigation={navigation}
-            paymentDetails={paymentDetails}
-          />
-        )}
-      </Drawer.Screen> */}
 
-      {/* <Drawer.Screen
-        name="About"
-        component={About}
+      <Drawer.Screen
+        name="Passengers"
+        component={Passengers}
         options={{
           header: () => (
             <View className="w-full bg-black flex flex-row items-center p-2 shadow-lg shadow-gray-500/100">
               <Button
-                color="#fff"
+                color="black"
                 onPress={() => navigation.navigate('Welcome')}
                 style={{backgroundColor: 'lightBlue'}}>
-                <Icon name="chevron-left" color="#000" />
+                <Icon name="chevron-left" color="#fff" />
               </Button>
               <View className="self-center items-center justify-center w-[80%]">
                 <Text className="font-bold text-lg">About us</Text>
               </View>
             </View>
           ),
-        }}
-      /> */}
-
-      {/* <Drawer.Screen
-        name="AddNewCard"
-        // component={AddNewCard}
-        options={{
-          header: () => (
-            <View className="w-full bg-black flex flex-row items-center p-2 shadow-lg shadow-gray-500/100">
-              <Button
-                color="#fff"
-                onPress={() => navigation.navigate('Payment method')}
-                style={{backgroundColor: 'lightBlue'}}>
-                <Icon name="chevron-left" color="#000" />
-              </Button>
-              <View className="self-center items-center justify-center w-[80%]">
-                <Text className="font-bold text-lg">Add new card</Text>
-              </View>
-            </View>
-          ),
           drawerItemStyle: {display: 'none'},
-        }}>
-        {() => (
-          <AddNewCard
-            navigation={navigation}
-            paymentDetails={paymentDetails}
-            setPaymentDetails={setPaymentDetails}
-          />
-        )}
-      </Drawer.Screen> */}
+        }}
+      />
     </Drawer.Navigator>
   );
 }

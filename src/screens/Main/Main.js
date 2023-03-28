@@ -18,15 +18,35 @@ import {Button, Icon, Overlay} from '@rneui/themed';
 // import {useDispatch} from 'react-redux';
 // import {AddRoute} from '../../store/slice/routeSlice';
 import {useRoute} from '@react-navigation/native';
+import Rider from '../../components/Rider/Rider';
 
 // https://docs.expo.dev/versions/latest/sdk/map-view/
 // https://www.npmjs.com/package/react-native-google-places-autocomplete
 // https://www.npmjs.com/package/react-native-maps-directions
 
 export default function App({navigation}) {
+  const [isRide, setIsRide] = useState(false);
+
   return (
-    <View>
-      <Text>Main</Text>
+    <View className="bg-black h-full items-center">
+      <View className="w-[90%] justify-between">
+        {isRide ? (
+          <Rider setIsRide={setIsRide} navigation={navigation} />
+        ) : (
+          <TouchableOpacity
+            style={{height: '45%'}}
+            onPress={() => setIsRide(true)}>
+            <View className="bg-[#161616] h-full w-full rounded-lg items-center justify-center">
+              <Text className="text-white font-bold text-2xl">
+                No ride requests {'\n'} at the moment
+              </Text>
+            </View>
+          </TouchableOpacity>
+        )}
+        <View className="bg-[#161616] h-[45%] w-full rounded-lg items-center justify-center">
+          <Text className="text-white font-bold text-2xl">MAP</Text>
+        </View>
+      </View>
     </View>
   );
 }

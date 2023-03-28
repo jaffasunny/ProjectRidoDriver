@@ -23,7 +23,7 @@ const Success = ({navigation}) => {
             color="#4F46E5"
             buttonStyle={{borderRadius: 6, width: 150, height: 50}}
             titleStyle={{
-              color: '#A5B4FC',
+              color: '#FAFAFA',
               fontSize: 16,
             }}
             style={{padding: 5}}
