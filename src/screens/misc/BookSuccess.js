@@ -2,9 +2,13 @@ import {View, Text, Image} from 'react-native';
 import React, {useState} from 'react';
 import StarRating from 'react-native-star-rating';
 import {Button} from '@rneui/themed';
+import {useSelector} from 'react-redux';
 
-const BookSuccess = ({navigation}) => {
+const BookSuccess = ({route, navigation}) => {
   const [starRating, setStarRating] = useState(4);
+  const {fare} = route.params;
+
+  const state = useSelector(state => state);
 
   return (
     <View className="relative h-full items-center justify-between">
@@ -20,7 +24,7 @@ const BookSuccess = ({navigation}) => {
             Your fare
           </Text>
           <Text className="text-center text-6xl font-bold text-white mt-5">
-            Rs 175
+            Rs {fare}
           </Text>
         </View>
 
@@ -41,7 +45,7 @@ const BookSuccess = ({navigation}) => {
 
       <View className="w-5/6 mb-20">
         <Button
-          title="Back home"
+          title="Back"
           color="#fff"
           buttonStyle={{
             borderRadius: 6,
@@ -56,7 +60,13 @@ const BookSuccess = ({navigation}) => {
             fontSize: 16,
             fontWeight: 500,
           }}
-          onPress={() => navigation.navigate('rideSharing')}
+          onPress={() => {
+            if (state?.user?.driverTrips?.length > 0) {
+              navigation.navigate('drawerScreens');
+            } else {
+              navigation.navigate('drawerScreens');
+            }
+          }}
           style={{padding: 5}}
         />
       </View>

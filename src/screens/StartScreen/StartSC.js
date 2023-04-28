@@ -1,11 +1,33 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Image, Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import GlobalStyles from './../../constants/GlobalStyles';
 import {Button} from '@rneui/themed';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {showNotification} from '../../utils/Notification/Notification';
+import PushNotification from 'react-native-push-notification';
 
 const StartSC = ({navigation}) => {
+  const createChannels = () => {
+    PushNotification.createChannel({
+      channelId: 'test-channel',
+      channelName: 'test Channel',
+    });
+  };
+
+  const handleNotification = item => {
+    PushNotification.localNotification({
+      channelId: 'test-channel',
+      title: 'You clicked on' + item,
+      message: 'Hello we are successful! ',
+    });
+  };
+
+  useEffect(() => {
+    createChannels();
+  }, []);
+
   return (
     <SafeAreaView className="flex-1 bg-black">
       <View className="flex">
@@ -37,6 +59,18 @@ const StartSC = ({navigation}) => {
             based on your preference
           </Text>
 
+          {/* <Button
+            title="Notification"
+            color="#4F46E5"
+            buttonStyle={{borderRadius: 6, width: 150, height: 50}}
+            titleStyle={{
+              color: '#FAFAFA',
+              fontSize: 16,
+            }}
+            style={{padding: 5}}
+            onPress={() => handleNotification()}
+          /> */}
+
           <View className="self-center mb-7">
             <View style={{width: 150}}>
               <Button
@@ -62,7 +96,6 @@ const StartSC = ({navigation}) => {
               color: '#A5B4FC',
             }}
             onPress={() => navigation.navigate('login')}
-            // onPress={() => navigation.navigate('drawerScreens')}
           />
         </View>
       </View>

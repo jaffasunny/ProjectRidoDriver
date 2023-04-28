@@ -10,13 +10,18 @@ import {DrawerActions, useRoute} from '@react-navigation/native';
 import Main from '../../screens/Main/Main';
 import Avatar from '../Avatar/Avatar';
 // import PaymentScreen from '../../screens/Payment/PaymentScreen';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {getHeaderTitle} from '@react-navigation/elements';
 import Passengers from '../../screens/Passenger/Passengers';
+import {DriverLogout} from '../../Api/Put';
+import {logout} from '../../store/slice/slice';
 // import AddNewCard from '../../screens/Payment/AddNewCard';
 // import About from '../../screens/About/About';
 
 function CustomDrawerContent(props) {
+  const dispatch = useDispatch();
+  const state = useSelector(state => state);
+
   return (
     <DrawerContentScrollView
       {...props}
@@ -44,7 +49,10 @@ function CustomDrawerContent(props) {
             fontWeight: 500,
           }}
           style={{padding: 5}}
-          onPress={() => props.navigation.navigate('startScreen')}
+          onPress={() => {
+            DriverLogout(state?.user?.user?.rider_id);
+            dispatch(logout());
+          }}
         />
       </View>
 
@@ -62,8 +70,6 @@ function CustomDrawerContent(props) {
 const Drawer = createDrawerNavigator();
 
 export default function MyDrawer({navigation}) {
-  const [paymentDetails, setPaymentDetails] = React.useState({});
-
   return (
     <Drawer.Navigator
       drawerContent={props => <CustomDrawerContent {...props} />}
@@ -76,7 +82,8 @@ export default function MyDrawer({navigation}) {
               <Button
                 color="black"
                 onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-                style={{backgroundColor: 'lightBlue'}}>
+                buttonStyle={{backgroundColor: 'black'}}
+                style>
                 <Icon name="menu" color="#fff" />
               </Button>
               <Image

@@ -6,11 +6,22 @@ import GlobalStyles from '../../constants/GlobalStyles';
 import {Button, Input, Icon, CheckBox} from '@rneui/themed';
 import Success from '../misc/Success';
 import DropDown from '../../utils/DropDown/DropDown';
+import {AddVehicle} from '../../Api/Post';
 
-const VehicleDetails = ({navigation}) => {
+const VehicleDetails = ({route, navigation}) => {
   const [focusBorder, setfocusBorder] = useState(false);
   const [selectedIndex, setIndex] = useState(0);
   const [success, setSuccess] = useState(false);
+  const [vehicleInfo, setVehicleInfo] = useState({});
+
+  const {driver_id} = route.params;
+
+  const handleAddVehicle = async () => {
+    let res = await AddVehicle(vehicleInfo, driver_id);
+    if (res) {
+      setSuccess(true);
+    }
+  };
 
   return (
     <SafeAreaView className="flex-1 bg-black">
@@ -26,7 +37,7 @@ const VehicleDetails = ({navigation}) => {
               <Text
                 style={GlobalStyles.text}
                 className="text-white font-medium text-sm mb-1">
-                Vehicle name
+                Vehicle make
               </Text>
               <Input
                 name="vehicle_name"
@@ -44,8 +55,15 @@ const VehicleDetails = ({navigation}) => {
                   height: 50,
                   paddingHorizontal: 0,
                 }}
+                style={{color: '#fff'}}
                 onFocus={e => setfocusBorder([1, true])}
                 onBlur={e => setfocusBorder([1, false])}
+                onChangeText={value =>
+                  setVehicleInfo({
+                    ...vehicleInfo,
+                    vehicle_name: value,
+                  })
+                }
               />
             </View>
             <View className="mt-3">
@@ -66,12 +84,19 @@ const VehicleDetails = ({navigation}) => {
                   borderColor: '#171717',
                   backgroundColor: '#171717',
                 }}
+                style={{color: '#fff'}}
                 containerStyle={{
                   height: 50,
                   paddingHorizontal: 0,
                 }}
                 onFocus={e => setfocusBorder([2, true])}
                 onBlur={e => setfocusBorder([2, false])}
+                onChangeText={value =>
+                  setVehicleInfo({
+                    ...vehicleInfo,
+                    vehicle_model: value,
+                  })
+                }
               />
             </View>
             <View className="mt-3">
@@ -96,8 +121,15 @@ const VehicleDetails = ({navigation}) => {
                   height: 50,
                   paddingHorizontal: 0,
                 }}
+                style={{color: '#fff'}}
                 onFocus={e => setfocusBorder([2, true])}
                 onBlur={e => setfocusBorder([2, false])}
+                onChangeText={value =>
+                  setVehicleInfo({
+                    ...vehicleInfo,
+                    year: value,
+                  })
+                }
               />
             </View>
             <View className="mt-3">
@@ -118,12 +150,19 @@ const VehicleDetails = ({navigation}) => {
                   borderColor: '#171717',
                   backgroundColor: '#171717',
                 }}
+                style={{color: '#fff'}}
                 containerStyle={{
                   height: 50,
                   paddingHorizontal: 0,
                 }}
                 onFocus={e => setfocusBorder([2, true])}
                 onBlur={e => setfocusBorder([2, false])}
+                onChangeText={value =>
+                  setVehicleInfo({
+                    ...vehicleInfo,
+                    license_plate: value,
+                  })
+                }
               />
             </View>
             <View className="mt-3">
@@ -144,32 +183,24 @@ const VehicleDetails = ({navigation}) => {
                   borderColor: '#171717',
                   backgroundColor: '#171717',
                 }}
+                style={{color: '#fff'}}
                 containerStyle={{
                   height: 50,
                   paddingHorizontal: 0,
                 }}
+                onChangeText={value =>
+                  setVehicleInfo({
+                    ...vehicleInfo,
+                    maximum_capacity: value,
+                  })
+                }
                 onFocus={e => setfocusBorder([2, true])}
                 onBlur={e => setfocusBorder([2, false])}
               />
             </View>
 
             <View className="self-center mt-20">
-              <View className="flex flex-row justify-between w-80">
-                <Button
-                  title="Back"
-                  type="clear"
-                  color="#A5B4FC"
-                  titleStyle={{
-                    color: '#FAFAFA',
-                    fontSize: 16,
-                  }}
-                  style={{padding: 5}}
-                  onPress={() => navigation.navigate('startScreen')}>
-                  <Icon name="chevron-left" color="#A5B4FC" />
-                  <Text className="text-base text-[#A5B4FC] font-normal">
-                    Back
-                  </Text>
-                </Button>
+              <View className="flex flex-row justify-end w-80">
                 <Button
                   title="Complete Sign up"
                   color="#4F46E5"
@@ -179,7 +210,7 @@ const VehicleDetails = ({navigation}) => {
                     fontSize: 16,
                   }}
                   style={{padding: 5}}
-                  onPress={() => setSuccess(true)}
+                  onPress={handleAddVehicle}
                 />
               </View>
             </View>
